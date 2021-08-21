@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Shockwave.shader" type="Shader" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://icon.gd" type="Script" id=3]
+[ext_resource path="res://airadventurelevel1.png" type="Texture" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/global_position = null
+shader_param/screen_size = Vector2( 320, 180 )
+shader_param/force = 0.0
+shader_param/size = 0.3
+shader_param/thickness = 0.1
+
+[sub_resource type="Animation" id=2]
+resource_name = "Shockwave"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/force")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.3 ]
+}
+
+[node name="PositionedShockwaveDemo" type="Node2D"]
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 233.633, 107.758 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="icon" type="Sprite" parent="."]
+position = Vector2( 197.91, 58.381 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 160, 90 )
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Shockwave" type="ColorRect" parent="Camera2D/CanvasLayer"]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/CanvasLayer/Shockwave"]
+playback_speed = 5.0
+anims/Shockwave = SubResource( 2 )
