@@ -4,4 +4,4 @@ Based on the shockwave shader tutorial by Nolkaloid: https://www.youtube.com/wat
 
 The shader itself is the same, but now you can pass the [global position of the object - global position of the camera] to the global_position uniform of the shader to make the shockwave emit from the object.
 
-Video on the shader:
+Video on the shader: https://youtu.be/94zllWyjchg
